@@ -1,0 +1,22 @@
+/* Neon style for MainMenu */
+.main-menu {
+  background: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  padding: 20px;
+}
+
+.main-menu-item {
+  background: #1a1a1a;
+  border: 1px solid #7873f5;
+  border-radius: 5px;
+  color: #ffffff;
+  margin: 5px 0;
+  padding: 10px;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.main-menu-item:hover {
+  background: #2a2a2a;
+  box-shadow: 0 0 10px #ff6ec4, 0 0 20px #7873f5;
+}
