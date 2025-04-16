@@ -1,3 +1,4 @@
+// Import necessary modules
 import React from 'react';
 import './ExpandedArea.css';
 
@@ -9,6 +10,13 @@ interface ExpandedAreaProps {
   getRef: (id: string) => React.RefObject<HTMLElement>;
 }
 
+/**
+ * Component to render an expanded area for a menu item.
+ *
+ * @param parentId - The ID of the parent menu item.
+ * @param items - The list of child items to display in the expanded area.
+ * @param getRef - Function to get a ref for each child item.
+ */
 export const ExpandedArea: React.FC<ExpandedAreaProps> = ({
   parentId,
   items,

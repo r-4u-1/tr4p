@@ -9,6 +9,16 @@ interface UseFocusTrapOptions {
 type FocusTrapRefs =
   | { refs: React.RefObject<HTMLElement>[] };
 
+/**
+ * Custom hook to trap focus within a set of elements.
+ *
+ * @param active - Whether the focus trap is active.
+ * @param focusRefs - An object containing an array of refs to focusable elements.
+ * @param options - Configuration options for the focus trap.
+ *   - trap: Whether to loop focus (default: true).
+ *   - onEscape: Callback when Escape key is pressed.
+ *   - autoFocus: Whether to focus the first element on activation (default: true).
+ */
 export function useFocusTrap(
   active: boolean,
   focusRefs: FocusTrapRefs,
@@ -88,9 +98,11 @@ export function useFocusTrap(
       });
     }
 
+    const previouslyFocusedElement = previouslyFocusedRef.current; // Store the ref value in a variable
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-      previouslyFocusedRef.current?.focus();
+      previouslyFocusedElement?.focus(); // Use the stored variable
       container.remove();
     };
   }, [active, trap, onEscape, autoFocus, stableRefs]);
