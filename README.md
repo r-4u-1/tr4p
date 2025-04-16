@@ -1,54 +1,45 @@
-# React + TypeScript + Vite
+# Focus Trap Menu Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This application demonstrates a focus trap implementation for managing multiple menus with expandable options. The focus trap ensures that keyboard navigation is restricted to the currently active menu and its associated elements.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Focus Trap**: Ensures focus remains within the active menu.
+- **Expandable Menus**: Supports nested menu items with expandable options.
+- **Keyboard Navigation**: Fully accessible with keyboard controls.
 
-## Expanding the ESLint configuration
+## File Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `src/App.tsx`: Main application component that manages state and rendering of menus.
+- `src/hooks/useFocusTrap.ts`: Custom hook for trapping focus within a set of elements.
+- `src/components/`: Contains reusable components for menus and expandable areas.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## How It Works
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. **Focus Trap**: The `useFocusTrap` hook dynamically manages focusable elements based on the active menu.
+2. **Menu Logic**: Each menu has its own logic file to manage state and provide utility functions.
+3. **Expandable Areas**: Nested menu items are rendered dynamically based on the selected parent item.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Usage
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Start the development server with `npm run dev`.
+4. Open the application in your browser and interact with the menus.
+
+## Accessibility
+
+- Use the `Tab` key to navigate through focusable elements.
+- Press `Escape` to close the currently active menu.
+
+## Example
+
+```jsx
+<button onClick={() => setOpenMainMenu(true)}>Open Main Menu</button>
+<MainMenu
+  items={mainMenuData}
+  onExpand={setMainExpandedId}
+  expandedId={mainExpandedId}
+  getRef={getMainRef}
+/>
 ```
